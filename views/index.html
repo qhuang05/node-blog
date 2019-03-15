@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>我的博客</title>
+	<link rel="icon" href="data:image/ico;base64,aWNv">
+	<link type="text/css" rel="stylesheet" href="/public/css/reset.css">
+	<link type="text/css" rel="stylesheet" href="/public/css/index.css">
+</head>
+<body>
+	<header>
+		<h1>我的博客</h1>
+		<ul>
+		<!-- 	<li><a href="Javascript:;">HTML</a></li>
+			<li><a href="Javascript:;">CSS</a></li>
+			<li><a href="Javascript:;">Javascript</a></li> -->
+			{% for category in categories %}
+			<li><a href="/index?page=1&category={{category._id.toString()}}">{{category.name}}</a></li>
+			{% endfor %}
+		</ul>
+	</header>
+	<div class="content">
+		<div class="layout-left">
+			<div class="content-list">
+				{% for content in contentList %}
+				<section>
+					<h3>{{ content.title }}</h3>
+					<p>{{ content.description }}</p>
+					<p>{{ content.content }}</p>
+					<p>{{ content.category.name }}</p>
+				</section>
+				{% endfor %}
+			</div>
+			<!-- {% include './admin/pager.html' %} -->
+			<ul class="pager">
+				<li class="last-page"><a href="/index?page={{ page-1 }}">上一页</a></li>
+				<li>共{{total}}条记录，每页显示{{perPage}}条记录，共{{totalPage}}页，当前是第{{page}}页</li>
+				<li class="next-page"><a href="/index?page={{ page+1 }}">下一页</a></li>
+			</ul>
+		</div>
+		<div class="layout-right">
+			{% if !userInfo.id %}
+			<section class="login-wrap" id="loginWrap">
+				<h3 class="form-title">登录</h3>
+				<div class="form">
+					<div class="form-item">
+						<div class="item-label">用户名</div>
+						<div class="item-content">
+							<input type="text" name="username" />
+						</div>
+					</div>
+					<div class="form-item">
+						<div class="item-label">密码</div>
+						<div class="item-content">
+							<input type="password" name="password" />
+						</div>
+					</div>
+					<div class="error-message"></div>
+					<div class="button-group">
+						<div class="button">
+							<button id="loginBtn">登录</button>
+						</div>
+					</div>
+				</div>
+				<p class="account-tips">
+					还未注册？<a href="Javascript:;" id="toRegister">注册</a>
+				</p>
+			</section>
+			<section class="register-wrap hide" id="registerWrap">
+				<h3 class="form-title">注册</h3>
+				<div class="form">
+					<div class="form-item">
+						<div class="item-label">用户名</div>
+						<div class="item-content">
+							<input type="text" name="username" />
+						</div>
+					</div>
+					<div class="form-item">
+						<div class="item-label">密码</div>
+						<div class="item-content">
+							<input type="password" name="password" />
+						</div>
+					</div>
+					<div class="form-item">
+						<div class="item-label">密码确认</div>
+						<div class="item-content">
+							<input type="password" name="repassword" />
+						</div>
+					</div>
+					<div class="error-message"></div>
+					<div class="button-group">
+						<button class="button" id="registerBtn">注册</button>
+					</div>
+				</div>
+				<p class="account-tips">
+					已有账号？<a href="Javascript:;" id="toLogin">马上登录</a>
+				</p>
+			</section>
+			{% else %}
+			<section class="user-info" id="userInfo">
+				<div class="welcome-wrap">
+					<p>
+						<span id="currentUser">{{userInfo.username}}</span><br/>
+						<span>你好！欢迎访问我的博客。</span>
+						{% if userInfo.isAdmin %}
+						<a href='/admin/index'>进入管理</a>
+						{% endif %}
+					</p>
+					<p class="text-right">
+						<button class="button" id="logout">退出</button>
+					</p>
+				</div>
+				<div class="learning-wrap">
+					<h3>学习链接</h3>
+					<ul>
+						<li><a href="http://www.miaov.com/" target="_blank">妙味课堂</a></li>
+						<li><a href="http://www.imooc.com/" target="_blank">慕课网</a></li>
+						<li><a href="http://www.zhihu.com/" target="_blank">知乎</a></li>
+						<li><a href="http://www.jianshu.com/" target="_blank">简书</a></li>
+						<li><a href="http://www.jobbole.com/" target="_blank">伯乐在线</a></li>
+					</ul>
+				</div>
+			</section>
+			{% endif %}
+		</div>
+	</div>
+	<script src="/public/lib/jquery-1.11.3.min.js"></script>
+	<script src="/public/js/index.js?v=1"></script>
+</body>
+</html>

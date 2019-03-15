@@ -1,0 +1,55 @@
+{% extends './layout.html' %}
+{% block head %}
+<style>
+.navbar{margin-bottom:0}
+</style>
+{% endblock %}
+{% block main %}
+<ol class="breadcrumb">
+	<li><a href="/admin/index">后台管理</a></li>
+	<li class="active">分类管理</li>
+</ol>
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+			<th>分类ID</th>
+			<th>分类名称</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for category in categoryList %}
+		<tr>
+			<td>{{category._id.toString()}}</td>
+			<td>{{category.name}}</td>
+			<td>
+				<a href="/admin/category_edit?id={{category._id.toString()}}">编辑</a> | 
+				<a href="javascript:;" onclick="delCategory('{{category._id.toString()}}')">删除</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<nav aria-label="...">
+  <ul class="pager">
+    <li class="last-page"><a href="/admin/category?page={{ page-1 }}">上一页</a></li>
+    <li>共{{total}}条记录，每页显示{{perPage}}条记录，共{{totalPage}}页，当前是第{{page}}页</li>
+    <li class="next-page"><a href="/admin/category?page={{ page+1 }}">下一页</a></li>
+  </ul>
+</nav>{% endblock %}
+{% block scripts %}
+<script>
+	function delCategory(id){
+		$.ajax({
+			type: 'post',
+			url: '/admin/category/delete',
+			data: {id: id},
+			success: function(res){
+				if(res.code == 0){
+					location.reload();
+				}
+			}
+		})
+	}
+</script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% block head %}
+	<style>
+		.navbar{margin-bottom:0}
+	</style>
+{% endblock %}
+{% block main %}
+<ol class="breadcrumb">
+	<li><a href="/admin/index">后台管理</a></li>
+	<li class="active">用户管理</li>
+</ol>
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+			<th>用户ID</th>
+			<th>用户名</th>
+			<th>是否是管理员</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for user in userList %}
+		<tr>
+			<td>{{user._id.toString()}}</td>
+			<td>{{user.username}}</td>
+			<td>{{user.isAdmin}}</td>
+			<td><a href="javascript:;" class="button" onclick="delUser('{{user._id.toString()}}')">删除</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'pager.html' %}
+{% endblock %}
+{% block scripts %}
+<script>
+	function delUser(id){
+		$.ajax({
+			type: 'post',
+			url: '/admin/user/delete',
+			data: {id: id},
+			success: function(res){
+				location.reload();
+			}
+		})
+	}
+
+</script>
+{% endblock %}

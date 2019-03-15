@@ -1,0 +1,146 @@
+html,body{
+	width:100%;
+	height:100%;
+	background: #efefef;
+}
+header{
+	width: 100%;
+	min-height: 120px;
+	background: #000 url(../images/title-bg.jpg) no-repeat;
+	background-size: 100% auto;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index:9999;
+}
+.content{
+	width:1200px;
+	margin:0 auto;
+	padding-top:140px;
+	display: flex;
+}
+.layout-left{
+	flex: 1;
+	margin-right: 30px;
+}
+.layout-right{
+	width: 400px;
+	position: relative;
+}
+header h1{
+	text-align: center;
+	margin-top: 20px;
+	font-size: 24px;
+	color: orange;
+}
+header ul{
+	display: flex;
+	justify-content: flex-end;
+	color: #fff;
+	margin-top: 10px;
+	padding-right:60px;
+}
+header li{
+	line-height: 40px;
+	padding: 0 20px;
+}
+header li a{
+	color: #fff;
+}
+header li.active a, header li a:hover{
+	color: orange;
+}
+.login-wrap,.register-wrap{
+	background: #fff;
+	padding:20px;
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+}
+.form-title{
+	padding-bottom:20px;
+	text-align:center;
+	font-size: 22px;
+	font-weight: bold;
+	color: orange;
+}
+.form-item{
+	height: 36px;
+	line-height: 36px;
+	margin-bottom:15px;
+}
+.item-label{
+	min-width: 80px;
+	padding-right: 10px;
+	text-align: right;
+	float: left;
+}
+.item-content{
+	overflow: hidden;
+}
+.item-content input{
+	width: 100%;
+	height: 36px;
+	line-height: 36px;
+	border:1px solid #ccc;
+}
+.button-group{
+	padding: 5px 0;
+	display: flex;
+	justify-content: center;
+}
+button{
+	border:0;
+	outline:0;
+	padding:8px 20px;
+	cursor: pointer;
+	background: #0E8CE8;
+	color:#fff;
+}
+.hide{
+	display:none;
+}
+.account-tips{
+	text-align:right;
+}
+.error-message{
+	color: red;
+	text-align:center;
+	padding: 10px 0;
+}
+.welcome-wrap, .learning-wrap{
+	background: #fff;
+	padding: 20px;
+	margin-bottom:20px;
+}
+.learning-wrap h3{
+	line-height: 40px;
+}
+.learning-wrap li{
+	line-height: 30px;
+	text-indent: 20px;
+}
+.welcome-wrap p:nth-child(1){
+	margin-bottom:10px;
+}
+.text-right{
+	text-align:right;
+}
+.layout-left section{
+	width: 100%;
+	min-height: 300px;
+	margin-bottom:20px;
+	background: lightgreen;
+}
+
+.pager{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+	-ms-flex-pack: justify;
+	        justify-content: space-between;
+}
